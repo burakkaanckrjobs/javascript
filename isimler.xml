@@ -1,0 +1,30 @@
+<Student>
+<ST>
+<Bölüm>Bilgisayar Programcılığı</Bölüm>
+<İsim>Mehmet Batansu</İsim>
+<Ders>Veritabaanı</Ders>
+<Puan>75</Puan>
+<Yası>1998</Yası>
+</ST>
+<ST>
+<Bölüm>Bilgisayar Programcılığı</Bölüm>
+<İsim>Bob Dylan</İsim>
+<Ders>Göresel Programlama</Ders>
+<Puan>55</Puan>
+<Yası>1997</Yası>
+</ST>
+<ST>
+<Bölüm>Mimarlık</Bölüm>
+<İsim>Zeynep cakır</İsim>
+<Ders>İngilizce-101</Ders>
+<Puan>90</Puan>
+<Yası>2004</Yası>
+</ST>
+<ST>
+<Bölüm>Ezcaılık</Bölüm>
+<İsim>Başak görmüş</İsim>
+<Ders>ilaçlar-101</Ders>
+<Puan>90</Puan>
+<Yası>2005</Yası>
+</ST>
+</Student>
