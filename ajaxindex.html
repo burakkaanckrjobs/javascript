@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Javascript - ajax - Asynchronous JavaScript And XML</title>
+</head>
+<body>
+
+    <input type="text" id="isim" placeholder="dosya isimi">
+    <input type="text" id="uzanti"placeholder="uzantı ismi">
+        
+    <button id="Yeniistek">Yeni İstek</button>
+    <button id="VeriGönder">Veri Gönder</button>
+    <button id="Güncele">Veri Güncele</button>
+    <button id="Delete">Silme</button>
+    <button id="phpVeri">Php veri</button>
+    
+    <script>
+            //request
+            //response
+
+            // readystate
+            // 0  istek yapılmadı
+            // 1 Baglantı Başarılı
+            // 2 istek alındı
+            // 3  istek alındı ve işlenmeye başlandı
+            // 4  reponse
+
+            //onreadystatechange
+            //onload
+
+    //#region  Yeni istek GET İslemi
+        document.querySelector("#Yeniistek").addEventListener("click",()=>{
+            const xhr = new XMLHttpRequest()
+            xhr.onload =function()
+            {
+
+                // if(this.readyState==4 && this.status==200)
+                // {
+                //     console.log("Cevap hazır")
+                // }
+                //console.log(`${this.readyState}=>${this.status}`)
+
+                if(this.status ===200)
+                {
+                   const gelenVeri= JSON.parse(this.responseText)
+                   gelenVeri.forEach(element => {
+                    console.log(element.title)
+                    
+                   });
+                }
+            }
+            xhr.open("GET","https://jsonplaceholder.typicode.com/posts")//GET
+            xhr.send()
+        })
+        //#endregion
+    //#region Veri Gönderme  POST
+        document.querySelector("#VeriGönder").addEventListener("click",()=>{
+
+            const data=  
+            {
+                userId: 10,
+                title: "Yeni Başlıl",
+                body: "Lorem ipsum"
+            }
+
+            const xhr = new XMLHttpRequest()
+            xhr.onload =function()
+            {
+                if(this.status ===201)//POST 201 status gereklidir
+                {
+                   console.log(this.responseText)
+                }
+            }
+            xhr.open("Post","https://jsonplaceholder.typicode.com/posts")//POST
+            xhr.setRequestHeader("Content-type","application/json")
+            xhr.send(JSON.stringify(data))
+        })
+        //#endregion
+    //#region Veri Gönderme  PUT
+            document.querySelector("#Güncele").addEventListener("click",()=>{
+
+            const data=  
+            {
+                userId: 10,
+                title: "Yeni Güncelenmiş",
+                body: "Merhaba Dünya"
+            }
+
+            const xhr = new XMLHttpRequest()
+            xhr.onload =function()
+            {
+            if(this.status ===200)//PUT 200 status gereklidir
+            {
+             console.log(this.responseText)
+            }
+            }
+                xhr.open("PUT","https://jsonplaceholder.typicode.com/posts/93")//PUT
+                xhr.setRequestHeader("Content-type","application/json")
+                xhr.send(JSON.stringify(data))
+                })
+        //#endregion
+    //#region Veri Gönderme  Delete
+        document.querySelector("#Delete").addEventListener("click",()=>{
+        const xhr = new XMLHttpRequest()
+        xhr.onload =function()
+        {
+        if(this.status ===200)//PUT 200 status gereklidir
+            {
+            console.log(this.responseText)
+            }
+        }
+        xhr.open("PUT","https://jsonplaceholder.typicode.com/posts/95")//PUT
+        xhr.send()
+        })
+        //#endregion
+    //#region 
+        document.querySelector("#phpVeri").addEventListener("click",()=>{
+            const dataphp =`
+            dosya=${document.getElementById("isim").value}
+            &uzanti=${document.getElementById("uzanti").value}`
+            const xhr =new XMLHttpRequest()
+            xhr.onload =function()
+            {
+                if(this.status ===200)
+                {
+                    console.log(this.responseText)
+                }
+                }
+            xhr.open("POST","./dosya.php")//GET
+            xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded")
+            xhr.send(dataphp)
+        })
+        //#endregion
+    
+    
+    </script>
+</body>
+</html>
